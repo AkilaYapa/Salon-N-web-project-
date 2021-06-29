@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .nav-item:hover{
+    background-color: rgb(101, 201, 201);
+    color: white;
+  }
+
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="home">Salon-N</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown"  style="font-size: 20px;font-weight: bold;" class="container">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/gallery" style="padding-left: 30px; padding-right: 30px;">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/services" style="padding-left: 30px; padding-right: 30px;">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about-us" style="padding-left: 30px; padding-right: 30px;">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact-us" style="padding-left: 30px; padding-right: 30px;">Contact Us</a>
+          </li>
+          <ng-template #anonymousUser>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login" style="padding-left: 30px; padding-right: 30px;">Login</a>
+            </li> 
+          </ng-template>
+          <li ngbDropdown *ngIf="auth.user$ | async as user; else anonymousUser"  class="nav-item dropdown">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ user.displayName  }}
+            </a>
+            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a ngbDropdownItem class="dropdown-item" routerLink="/user-booking">Bookings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a ngbDropdownItem class="dropdown-item"(click)="logout()">Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</body>
+</html>
+
+
+
